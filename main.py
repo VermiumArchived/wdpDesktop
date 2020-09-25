@@ -41,17 +41,17 @@ try:
     os.mkdir(root)
 except: pass # Create ./images
 
-#try:
-#    os.mkdir(root + "\\toDo")
-#except: pass # Create ./images/toDo
-#
-#try:
-#    os.mkdir(root + "\\failed")
-#except: pass # Create ./images/failed
-#
-#try:
-#    os.mkdir(root + "\\completed")
-#except: pass # Create ./images/completed
+try:
+    os.mkdir(root + "\\toDo")
+except: pass # Create ./images/toDo
+
+try:
+    os.mkdir(root + "\\failed")
+except: pass # Create ./images/failed
+
+try:
+    os.mkdir(root + "\\completed")
+except: pass # Create ./images/completed
 
 try:
     os.mkdir("./models")
@@ -118,6 +118,7 @@ for root, dirs, files in os.walk(root, topdown=False):
                 ) +
                 "%" # Add a percentage symbol after Prediction: Probability
             )
+            clear()
             out.write(str(eachPrediction) + '; ' + str(eachProbability) + '%\n') # Write each prediction to the CSV file
 
         out.close() # Close .csv file
