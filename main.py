@@ -1,25 +1,13 @@
 # -*- coding: utf-8 -*-
 # WhatsDisPic?
 
-__author__ = "Vermium Sifell, Temerold"
-__copyright__ = "MIT License - (© 2020 Zyner)"
-__version__ = "dev"
-__email__ = "support@vermium.se, support@Temerold.se"
-__status__ = "In development"
-
-
-# ./images/toDo - files to transcode
-# ./images/failed - files that have had failed
-# ./images/completed - files that have successfully completed
-
+from deps import *
 from config import * # User configuration - Local file (config.py)
 
 import os
 import sys
 import shutil
 from time import sleep
-
-from deps import *
 
 clear = lambda: os.system('cls') # Define clear() as cls
 
