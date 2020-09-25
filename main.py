@@ -12,19 +12,21 @@ __status__ = "In development"
 # ./images/failed - files that have had failed
 # ./images/completed - files that have successfully completed
 
+from config import * # User configuration - Local file (config.py)
 
-from imageai.Prediction import ImagePrediction
-from colorthief import ColorThief
 import os
-from PIL import Image, ImageColor
+import sys
 import shutil
 from time import sleep
 
-from config import * # User configuration - Local file (config.py)
+from deps import *
+
+clear = lambda: os.system('cls') # Define clear() as cls
+
+yes = ['y', 'yes'] # YES Synonyms
+no = ['n', 'no'] # NO Synonyms
 
 execution_path = os.getcwd()
-
-clear = lambda: os.system('cls')
 
 prediction = ImagePrediction()
 prediction.setModelTypeAsResNet()
@@ -35,18 +37,25 @@ dominant_color = ""
 pattern = ""
 run = True
 
-yes = ['y', 'yes']
-no = ['n', 'no']
+try:
+    os.mkdir(root)
+except: pass # Create ./images
 
-try: os.mkdir(root) except: pass # Create ./images
+#try:
+#    os.mkdir(root + "\\toDo")
+#except: pass # Create ./images/toDo
+#
+#try:
+#    os.mkdir(root + "\\failed")
+#except: pass # Create ./images/failed
+#
+#try:
+#    os.mkdir(root + "\\completed")
+#except: pass # Create ./images/completed
 
-try: os.mkdir(root + "\\toDo") except: pass # Create ./images/toDo
-
-try: os.mkdir(root + "\\failed") except: pass # Create ./images/failed
-
-try: os.mkdir(root + "\\completed") except: pass # Create ./images/completed
-
-try: os.mkdir(./models) except: pass # Create ./models
+try:
+    os.mkdir("./models")
+except: pass # Create ./models
 
 for root, dirs, files in os.walk(root, topdown=False):
     clear()
@@ -68,23 +77,23 @@ for root, dirs, files in os.walk(root, topdown=False):
         )
 
         try: # Try making the ./images/picture/
-            os.mkdir(root + "\\completed\\" + base) # Create directory for image ./images/picture/
+            os.mkdir(root + "\\" + base) # Create directory for image ./images/picture/
         except: pass # Pass, if error/already exists
 
         ima = Image.new("RGB", (width, height), (dominant_color)) # Creating a image base with dominant color
 
-        ima.save(root + "\\completed\\" + base + "\\" + "dominantColor" + ext) # Saves the dominant color image in ./images/picture/dominant.ext
+        ima.save(root + "\\" + base + "\\" + "dominantColor" + ext) # Saves the dominant color image in ./images/picture/dominant.ext
 
         ima.close() # Close dominant image
 
         try: # Try move image from ./images/picture.ext to ./images/picture/original.ext
-            shutil.move((root + "\\toDo\\" + name), (root + "\\completed\\" + base + "\\original" + ext))
+            shutil.move((root + "\\" + name), (root + "\\" + base + "\\original" + ext))
         except: # If error
             ask_continue = input("Failed at moving file " + name + ", do you want to continue? (no/yes)")
             if ask_continue in no: exit() # Exit program if answered no
             elif ask_continue in yes: # Do statement if answered yes
                 try:
-                    shutil.move((root + "\\toDo\\" + name), (root + "\\failed\\" + base + "-failed" + ext)) # Rename ./images/picture.ext to ./images/picture-failed.ext
+                    shutil.move((root + "\\" + name), (root + "\\" + base + "-failed" + ext)) # Rename ./images/picture.ext to ./images/picture-failed.ext
                 except:
                     secs = 10 # Timer set for 10 seconds
                     for sec in range(secs - 1):
@@ -98,7 +107,7 @@ for root, dirs, files in os.walk(root, topdown=False):
                     exit() # Exit program
 
         try: # Try to open a new CSV file
-            out = open((root + "\\completed\\" + base + "\\" + "predictions.csv"), 'w') # Opening a CSV file
+            out = open((root + "\\" + base + "\\" + "predictions.csv"), 'w') # Opening a CSV file
         except: pass # Pass if error / already exists
         
         for eachPrediction, eachProbability in zip(predictions, probabilities): # Do the things below for each Prediction
