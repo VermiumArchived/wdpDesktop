@@ -37,26 +37,6 @@ dominant_color = ""
 pattern = ""
 run = True
 
-try:
-    os.mkdir(root)
-except: pass # Create ./images
-
-try:
-    os.mkdir(root + "\\toDo")
-except: pass # Create ./images/toDo
-
-try:
-    os.mkdir(root + "\\failed")
-except: pass # Create ./images/failed
-
-try:
-    os.mkdir(root + "\\completed")
-except: pass # Create ./images/completed
-
-try:
-    os.mkdir("./models")
-except: pass # Create ./models
-
 for root, dirs, files in os.walk(root, topdown=False):
     clear()
     for name in [fi for fi in files if fi.lower().endswith(tuple(fileTypes))]:

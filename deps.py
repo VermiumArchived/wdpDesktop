@@ -1,5 +1,26 @@
 import os
 import sys
+from config import * # User configuration - Local file (config.py)
+
+try:
+    os.mkdir(root) 
+except: pass # Create ./images
+
+try:
+    os.mkdir(root + "\\toDo") 
+except: pass # Create ./images/toDo
+
+try:
+    os.mkdir(root + "\\failed")
+except: pass # Create ./images/failed
+
+try:
+    os.mkdir(root + "\\completed")
+except: pass # Create ./images/completed
+
+try:
+    os.mkdir("./models")
+except: pass # Create ./models
 
 clear = lambda: os.system('cls') # Define clear() as cls
 
