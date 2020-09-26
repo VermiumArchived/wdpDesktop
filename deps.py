@@ -1,6 +1,6 @@
 import os
 import sys
-from config import * # User configuration - Local file (config.py)
+from config import root # User configuration - Local file (config.py)
 
 try:
     os.mkdir(root) 
