@@ -4,28 +4,20 @@
 from deps import *
 from config import * # User configuration - Local file (config.py)
 
-import os
-import sys
-import shutil
-from time import sleep
-
 clear = lambda: os.system('cls') # Define clear() as cls
 
 yes = ['y', 'yes'] # YES Synonyms
 no = ['n', 'no'] # NO Synonyms
 
-execution_path = os.getcwd()
+execution_path = os.getcwd() # Gets the execution path
 
-prediction = ImagePrediction()
-prediction.setModelTypeAsResNet()
+prediction = ImagePrediction() # Init prediction variable
+prediction.setModelTypeAsResNet() # Set model type to ResNet
 prediction.setModelPath(os.path.join(execution_path, model)) # Download the model via this link https://github.com/OlafenwaMoses/ImageAI/releases/tag/1.0
-prediction.loadModel()
+prediction.loadModel() # Loading selected model from config.py
 
-dominant_color = ""
-pattern = ""
-run = True
-
-
+dominantColor = "" # Init dominantColor variable
+pattern = "" # Init pattern variable
 
 for root, dirs, files in os.walk(root, topdown=False):
     clear()
@@ -43,7 +35,7 @@ for root, dirs, files in os.walk(root, topdown=False):
         # Getting colors
 
         color_thief = ColorThief(root + '\\' + name) # Getting image's color-properties
-        dominant_color = color_thief.get_color(quality = 1) # Getting the image dominant color
+        dominantColor = color_thief.get_color(quality = 1) # Getting the image dominant color
         predictions, probabilities = prediction.predictImage((root + '\\' + name), result_count=numGuess) # AI engine calculates the image in a numGuess count of results
 
         # Creating image directory
@@ -54,7 +46,7 @@ for root, dirs, files in os.walk(root, topdown=False):
 
         # Making a image with the dominant color
 
-        ima = Image.new("RGB", (width, height), (dominant_color)) # Creating a image base with dominant color
+        ima = Image.new("RGB", (width, height), (dominantColor)) # Creating a image base with dominant color
         ima.save(root + "\\" + base + "\\" + "dominantColor" + ext) # Saves the dominant color image in root/picture/dominant.ext
         ima.close() # Close dominant image
 
@@ -90,7 +82,7 @@ for root, dirs, files in os.walk(root, topdown=False):
 
         print(
             "Image Name: %s" % str(name) + # Prints name of image
-            "\nDominant Color: %s" % str(dominant_color) + # Prints Dominant color
+            "\nDominant Color: %s" % str(dominantColor) + # Prints Dominant color
             "\nImage Palette: %s" % str(pattern) + # Prints Image Palette
             "\nPredictions:" # Print title of Predictions
         )
