@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # WhatsDisPic?
 
-from deps import *
+from deps import * # Importign all dependencies from deps.py
 from config import * # User configuration - Local file (config.py)
 
 clear = lambda: os.system('cls') # Define clear() as cls
@@ -22,9 +22,8 @@ pattern = "" # Init pattern variable
 for root, dirs, files in os.walk(root, topdown=False):
     clear()
     for name in [fi for fi in files if fi.lower().endswith(tuple(fileTypes))]:
-        # Split file up into base.ext
 
-        base, ext = os.path.splitext(name) # File name base.ext
+        base, ext = os.path.splitext(name) # Split file up into base.ext
         
         # Getting image size
 
@@ -38,9 +37,7 @@ for root, dirs, files in os.walk(root, topdown=False):
         dominantColor = color_thief.get_color(quality = 1) # Getting the image dominant color
         predictions, probabilities = prediction.predictImage((root + '\\' + name), result_count=numGuess) # AI engine calculates the image in a numGuess count of results
 
-        # Creating image directory
-
-        try: # Try making the root/picture/
+        try: # Create directory root/picture/
             os.mkdir(root + "\\" + base) # Create directory for image root/picture/
         except: pass # Pass, if error/already exists
 
@@ -49,8 +46,6 @@ for root, dirs, files in os.walk(root, topdown=False):
         ima = Image.new("RGB", (width, height), (dominantColor)) # Creating a image base with dominant color
         ima.save(root + "\\" + base + "\\" + "dominantColor" + ext) # Saves the dominant color image in root/picture/dominant.ext
         ima.close() # Close dominant image
-
-        # Moving original image to the image folder and call it original.ext
 
         try: # Try move image from root/picture.ext to root/picture/original.ext
             shutil.move((root + "\\" + name), (root + "\\" + base + "\\original" + ext))
@@ -72,10 +67,8 @@ for root, dirs, files in os.walk(root, topdown=False):
                         sleep(1) # Wait 1 second
                     exit() # Exit program
 
-        # Create root/picture/predictions.csv file
-
-        try: # Try to open a new CSV file
-            out = open((root + "\\" + base + "\\" + "predictions.csv"), 'w') # Opening a CSV file
+        try: # Create root/picture/predictions.csv file
+            out = open((root + "\\" + base + "\\" + "predictions.csv"), 'w') # # Open root/picture/predictions.csv file
         except: pass # Pass if error / already exists
         
         # Printing some properties about the image
@@ -97,14 +90,8 @@ for root, dirs, files in os.walk(root, topdown=False):
                 )
             )
 
-            # Clear Console
-
-            clear()
-
-            # Write each prediction and its probability to root/picture/predictions.csv
+            clear() # Clear Console
             
-            out.write(str(eachPrediction) + '; ' + str(eachProbability) + '%\n') # Write each prediction to the CSV file
+            out.write(str(eachPrediction) + '; ' + str(eachProbability) + '%\n') # Write each prediction and its probability to root/picture/predictions.csv
 
-        # Close root/picture/predictions.csv file
-
-        out.close() # Close .csv file
+        out.close() # Close root/picture/predictions.csv file
