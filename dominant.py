@@ -1,8 +1,8 @@
 from deps import * # Importing all dependencies from deps.py
-from config import enableDominant
+from config import dominant
 
-def dominant(name, root, base, ext):
-    if enableDominant:
+def runDominant(name, root, base, ext):
+    if dominant['enable']:
         dominantColor = "" # Init dominantColor variable
 
         im = Image.open(root + '\\' + name) # Opening root/picture.ext

@@ -1,6 +1,6 @@
 # Import root variable from config.py
 
-from config import root # User configuration - Local file (config.py)
+from config import * # User configuration - Local file (config.py)
 
 # Imports preinstalled packages
 

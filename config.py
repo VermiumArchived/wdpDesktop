@@ -1,13 +1,10 @@
-numGuess = 10 # AI Guesses
+from ruamel import yaml
 
-fileTypes = ['.png', '.jpg', '.bmp', '.webp', '.jpeg'] # Image Formats
+with open("./config.yaml", 'r') as fp:
+    data = yaml.safe_load(fp)
 
-root = './images' # Directory to images root
+general = data['general']
 
-model = './models/resnet50_weights_tf_dim_ordering_tf_kernels.h5' # Used model - download at https://github.com/OlafenwaMoses/ImageAI/releases/tag/1.0
-
-enableAI = True
-
-enableDominant = True
-
-enablePalette = True
+ai = data['ai']
+dominant = data['dominant']
+palette = data['palette']

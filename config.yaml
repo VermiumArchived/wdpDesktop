@@ -1,0 +1,20 @@
+general:
+  root: ./images
+  fileTypes:
+    - png
+    - jpg
+    - bmp
+    - webp
+    - jpeg
+  progressBar: true
+
+ai:
+  enable: true
+  results: 10
+  model: resnet50_weights_tf_dim_ordering_tf_kernels.h5
+
+dominant:
+  enable: true
+
+palette:
+  enable: true

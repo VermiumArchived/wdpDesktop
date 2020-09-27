@@ -1,17 +1,18 @@
 from deps import * # Importing all dependencies from deps.py
-from config import enableAI, model
+from config import ai
 
-def ai(name, numGuess, root, base):
-    if enableAI:
+def runAI(name, root, base, ext):
+    if ai['enable']:
 
         execution_path = os.getcwd() # Gets the execution path
 
         prediction = ImagePrediction() # Init prediction variable
         prediction.setModelTypeAsResNet() # Set model type to ResNet
-        prediction.setModelPath(os.path.join(execution_path, model)) # Download the model via this link https://github.com/OlafenwaMoses/ImageAI/releases/tag/1.0
+        prediction.setModelPath("./models/%s" % (ai['model'])) # Download the model via this link https://github.com/OlafenwaMoses/ImageAI/releases/tag/1.0
         prediction.loadModel() # Loading selected model from config.py
 
-        predictions, probabilities = prediction.predictImage((root + '\\' + name), result_count=numGuess) # AI engine calculates the image in a numGuess count of results
+        predictions, probabilities = prediction.predictImage((root + '\\' + name), result_count=ai['results']) # AI engine calculates the image in a numGuess count of results
+        clear()
 
         try: # Create root/picture/predictions.csv file
             out = open((root + "\\" + base + "\\" + "predictions.csv"), 'w') # # Open root/picture/predictions.csv file
