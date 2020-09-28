@@ -2,3 +2,4 @@ tensorflow
 imageai
 pillow
 colorthief
+pytest
