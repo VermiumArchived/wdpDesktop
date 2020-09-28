@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# WhatsDisPic?
+# What's Dis Pic?
 
 from deps import * # Importing all dependencies from deps.py
 from config import general # User configuration - Local file (config.py)
