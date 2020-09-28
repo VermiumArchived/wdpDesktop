@@ -59,4 +59,6 @@ for root, dirs, files in os.walk(general['root'], topdown=False):
         sleep(1)
         clear()
         current += 1
-##        progress.done()
+#        progress.done()
+
+# Tobbe was here
