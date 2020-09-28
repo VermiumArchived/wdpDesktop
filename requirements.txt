@@ -1,0 +1,4 @@
+tensorflow
+imageai
+pillow
+colorthief
