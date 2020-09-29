@@ -41,23 +41,20 @@ no = ['n', 'no'] # No values
 try:
 
     # Looks if all required packages is installed
-
     import tensorflow
     from imageai.Prediction import ImagePrediction
     from PIL import Image, ImageColor
     from colorthief import ColorThief
 
     # Init variables
-
     ask_auto = "" # Init input boolean
 
 # If not all packages are installed do this
 except:
     clear() # Clear console before asking for automatic install
-    ask_auto = input("Do you wan't automatic install of packages? (no/yes)") # Ask if user want's automatic packages install
+    ask_auto = input("Do you want automatic install of packages? (y/n)") # Ask if user want's automatic packages install
 
 # Look if Tensorflow is installed
-
 try:
     import tensorflow
 except ImportError:
@@ -69,14 +66,12 @@ except ImportError:
     or run pip install tensorflow.""")
 
     # User want's automatic install
-
     elif ask_auto in yes:
         print("Trying to Install required module: tensorflow\n")
         os.system('python -m pip install tensorflow')
         import tensorflow
 
 # Look if ImageAI is installed
-
 try:
     from imageai.Prediction import ImagePrediction
 except ImportError:
@@ -88,14 +83,12 @@ except ImportError:
     or run pip install imageai.""")
 
     # User want's automatic install
-
     elif ask_auto in yes:
         print("Trying to Install required module: imageai\n")
         os.system('python -m pip install imageai')
         from imageai.Prediction import ImagePrediction
 
 # Look if PIL is installed
-
 try:
     from PIL import Image, ImageColor
 except ImportError:
@@ -107,14 +100,12 @@ except ImportError:
     or run pip install pillow""")
 
     # User want's automatic install
-
     elif ask_auto in yes:
         print("Trying to Install required module: pillow\n")
         os.system('python -m pip install pillow')
         from PIL import Image, ImageColor
 
 # Look if ColorThief is installed
-
 try:
     from colorthief import ColorThief
 except ImportError:
@@ -126,7 +117,6 @@ except ImportError:
     or run pip install colorthief.""")
 
     # User want's automatic install
-
     elif ask_auto in yes:
         print("Trying to Install required module: colorthief\n")
         os.system('python -m pip install colorthief')
